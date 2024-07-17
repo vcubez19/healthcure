@@ -13,7 +13,7 @@ export const {
 
 const client = new sdk.Client();
 
-// TODO: Replace with env variables
+// TODO: Change to source from .env
 
 client
     .setEndpoint("https://cloud.appwrite.io/v1")

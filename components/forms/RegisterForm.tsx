@@ -14,7 +14,7 @@ import { useRouter } from "next/navigation"
 import { createUser } from "@/lib/actions/patient.actions"
 import FormFieldType from "@/types/formFieldTypes"
 
-const PatientForm = () => {
+const RegisterForm = ({ user }: {user: User}) => {
 
   const router = useRouter();
 
@@ -56,8 +56,16 @@ const PatientForm = () => {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         <section className="mb-12 space-y-4">
-            <h1 className="text-2xl">Hello</h1>
-            <p>Let's get you started</p>
+            <h1 className="text-2xl">Welcome</h1>
+            <p>Let's learn more about you</p>
+        </section>
+
+        <section className="space-y-6">
+          <div className="mb-12">
+            <h1 className="sub-header">
+              Personal Information
+            </h1>
+          </div>
         </section>
 
         <CustomFormField 
@@ -69,24 +77,6 @@ const PatientForm = () => {
             iconSrc="/assets/icons/user.svg"
             iconAlt="user"
         />
-
-        <CustomFormField 
-            fieldType={FormFieldType.INPUT}
-            control={form.control}
-            name="email"
-            label="Email"
-            placeholder="johndoe@example.com"
-            iconSrc="/assets/icons/email.svg"
-            iconAlt="email"
-        />
-
-        <CustomFormField 
-            fieldType={FormFieldType.PHONE}
-            control={form.control}
-            name="phone"
-            label="Phone number"
-            placeholder="(555) 123-4567"
-        />
         
         <SubmitButton isLoading={isLoading}>
             Get started
@@ -96,4 +86,4 @@ const PatientForm = () => {
   )
 }
 
-export default PatientForm
+export default RegisterForm
