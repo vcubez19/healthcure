@@ -1,6 +1,9 @@
+"use server";
+
 import { ID, Query } from "node-appwrite"
-import { users } from "../appwrite.config"
+import { DATABASE_ID, databases, NEXT_PUBLIC_ENDPOINT, NEXT_PUBLIC_STORAGE_BUCKET_ID, PATIENT_COLLECTION_ID, PROJECT_ID, storage, users } from "../appwrite.config"
 import { parseStringify } from "../utils";
+import { InputFile } from "node-appwrite/file";
 
 export const createUser = async (user: CreateUserParams) => {
     try {
@@ -31,5 +34,36 @@ export const getUser = async (userId: string) => {
         return parseStringify(user);
     } catch (error) {
 
+    }
+}
+
+// TODO: Replace with .env variables.
+
+export const registerPatient = async ({ identificationDocument, ...patient }: RegisterUserParams) => {
+    try {
+        let file;
+
+        if (identificationDocument) {
+            const inputFile = InputFile.fromBuffer(
+                identificationDocument?.get("blobfile") as Blob,
+                identificationDocument?.get("fileName") as string,
+            )
+
+            file = await storage.createFile("6697e00e00309f6aee6a", ID.unique(), inputFile)
+        }
+
+        const newPatient = await databases.createDocument("6697df95001474bc8962",
+            "6697dfb30006febfd995",
+            ID.unique(),
+            {
+                identificationDocumentId: file?.$id || null,
+                identificationDocumentUrl: `${"https://cloud.appwrite.io/v1"}/storage/buckets/${"6697e00e00309f6aee6a"}/files/${file?.$id}/view?project=${"6696b6a10007b9e4cff3"}`,
+                ...patient
+            }
+        )
+
+        return parseStringify(newPatient);
+    } catch(error) {
+        console.log(error)
     }
 }
