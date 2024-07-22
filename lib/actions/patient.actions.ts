@@ -49,15 +49,15 @@ export const registerPatient = async ({ identificationDocument, ...patient }: Re
                 identificationDocument?.get("fileName") as string,
             )
 
-            file = await storage.createFile("6697e00e00309f6aee6a", ID.unique(), inputFile)
+            file = await storage.createFile(NEXT_PUBLIC_STORAGE_BUCKET_ID!, ID.unique(), inputFile)
         }
 
-        const newPatient = await databases.createDocument("6697df95001474bc8962",
-            "6697dfb30006febfd995",
+        const newPatient = await databases.createDocument(DATABASE_ID!,
+            PATIENT_COLLECTION_ID!,
             ID.unique(),
             {
                 identificationDocumentId: file?.$id || null,
-                identificationDocumentUrl: `${"https://cloud.appwrite.io/v1"}/storage/buckets/${"6697e00e00309f6aee6a"}/files/${file?.$id}/view?project=${"6696b6a10007b9e4cff3"}`,
+                identificationDocumentUrl: `${NEXT_PUBLIC_ENDPOINT}/storage/buckets/${NEXT_PUBLIC_STORAGE_BUCKET_ID}/files/${file?.$id}/view?project=${PROJECT_ID}`,
                 ...patient
             }
         )
