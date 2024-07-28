@@ -15,16 +15,19 @@ import FormFieldType from "@/types/formFieldTypes"
 import { SelectItem } from "../ui/select"
 import Image from "next/image";
 import { Doctors } from "@/constants"
-import { createAppointment } from "@/lib/actions/appointment.actions"
+import { createAppointment, updateAppointment } from "@/lib/actions/appointment.actions"
+import { Appointment } from "@/types/appwrite.types";
 
 type AppointmentFormProps = {
     userId: string,
     patientId: string,
     type: "create" | "cancel" | "schedule"
+    appointment?: Appointment,
+    setOpen: (open: boolean) => void;
 }
 
 export default function AppointmentForm({ 
-    userId, patientId, type
+    userId, patientId, type, appointment, setOpen
  }: AppointmentFormProps ) {
 
   const AppointmentFormValidation = getAppointmentSchema(type);
@@ -78,8 +81,26 @@ export default function AppointmentForm({
             form.reset();
             router.push(`/patients/${userId}/new-appointment/success?appointmentId=${appointment.$id}`)
         }
-       } 
+       } else {
+        const appointmentToUpdate = {
+            userId,
+            appointmentId: appointment?.$id!,
+            appointment: {
+                primaryPhysician: values?.primaryPhysician,
+                schedule: new Date(values?.schedule),
+                status: status as Status,
+                cancellation: values?.cancellationReason
+            },
+            type
+        }
 
+        const updatedAppointment = await updateAppointment(appointmentToUpdate);
+
+        if (updatedAppointment) {
+            setOpen && setOpen(false);
+            form.reset();
+        }
+       }
     } catch (error) {
         console.log(error)
     } finally {
