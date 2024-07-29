@@ -8,7 +8,7 @@ import { Form } from "@/components/ui/form"
 import CustomFormField from "../CustomFormField"
 import SubmitButton from "../SubmitButton"
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { getAppointmentSchema } from "@/lib/validation"
 import { useRouter } from "next/navigation"
 import FormFieldType from "@/types/formFieldTypes"
@@ -37,11 +37,11 @@ export default function AppointmentForm({
   const form = useForm<z.infer<typeof AppointmentFormValidation>>({
     resolver: zodResolver(AppointmentFormValidation),
     defaultValues: {
-      primaryPhysician: "",
-      schedule: new Date(),
-      reason: "",
-      note: "",
-      cancellationReason: ""
+      primaryPhysician: appointment ? appointment.primaryPhysician : "",
+      schedule: appointment ? new Date(appointment.schedule) : new Date(),
+      reason: appointment ? appointment.reason : "",
+      note: appointment ? appointment.note : "",
+      cancellationReason: appointment ? appointment.cancellationReason : ""
     },
   });
 
@@ -89,7 +89,7 @@ export default function AppointmentForm({
                 primaryPhysician: values?.primaryPhysician,
                 schedule: new Date(values?.schedule),
                 status: status as Status,
-                cancellation: values?.cancellationReason
+                cancellationReason: values?.cancellationReason
             },
             type
         }

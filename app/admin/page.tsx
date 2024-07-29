@@ -3,7 +3,7 @@ import React from 'react'
 import Image from "next/image";
 import StatCard from '@/components/StatCard';
 import { getRecentAppointmentsList } from '@/lib/actions/appointment.actions';
-import { columns, Payment } from '@/components/table/columns';
+import { columns } from '@/components/table/columns';
 import { DataTable } from '@/components/table/DataTable';
 
 const Admin = async () => {
