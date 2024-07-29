@@ -75,7 +75,7 @@ You need to create several collections and define the documents (tables and fiel
  
 ### 5. Enable messaging
 
-In your Appwrite project dashboard, navigate to the `Messaging` section and create an SMS provider
+In your Appwrite project dashboard, navigate to the `Messaging` section and create an SMS provider.
 
 ### 6. Configure Sentry
 1. Go to http://sentry.io and create a new Next.js project.
@@ -98,7 +98,7 @@ NEXT_PUBLIC_ADMIN_PASSKEY=YOUR_CUSTOM_PASSKEY (example: 123456)
 SENTRY_AUTH_TOKEN=YOUR_SENTRY_AUTH_TOKEN
 ```
 
-You should now have the required db setup for the provided front end to work correctly.
+You should now have the required setup for the provided code to work correctly.
 
 ## Installation
 To set up the project locally, follow these steps:
