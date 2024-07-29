@@ -22,8 +22,7 @@ HealthCure is a solution for scheduling and managing appointments between patien
 ## Project Setup
 
 ### 1. Create an Appwrite Project
-1. Sign in to your [Appwrite console](https://appwrite.io/console).
-2. Create a new project and note the project ID.
+1. Sign in to your [Appwrite console](https://appwrite.io/console) and create a new project
 
 ### 2. Set Up an API Key
 1. Go to the `overview` tab of your new project.
