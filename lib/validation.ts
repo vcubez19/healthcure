@@ -55,7 +55,14 @@ export const PatientFormValidation = z.object({
   pastMedicalHistory: z.string().optional(),
   identificationType: z.string().optional(),
   identificationNumber: z.string().optional(),
-  identificationDocument: z.custom<File[]>().optional(),
+  identificationDocument: z.custom<File[]>((files) => {
+    if (!Array.isArray(files) || files.length === 0) {
+      return false;
+    }
+    return true;
+  }, {
+    message: "At least one identification document must be chosen",
+  }),
   treatmentConsent: z
     .boolean()
     .default(false)

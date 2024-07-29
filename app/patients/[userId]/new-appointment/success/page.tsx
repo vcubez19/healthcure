@@ -15,7 +15,7 @@ const AppointmentSuccess = async ({ params: { userId }, searchParams }: SearchPa
   const doctor = Doctors.find((doc) => doc.name === appointment.primaryPhysician);
   const user = await getUser(userId)
 
-  Sentry.metrics.set("user_view_new-appointment/success", user.name);
+  Sentry.metrics.set("user_view_new-appointment-success", user.name);
 
   return (
     <div className="flex h-screen max-h-screen px-[5%]">

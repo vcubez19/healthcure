@@ -26,6 +26,7 @@ interface CustomProps {
   fieldType: FormFieldType,
   name: string,
   label?: string,
+  value?: string,
   placeholder?: string,
   iconSrc?: string,
   iconAlt?: string,
@@ -39,7 +40,7 @@ interface CustomProps {
 
 const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
 
-  const { fieldType, iconSrc, iconAlt, placeholder, showTimeSelect, dateFormat, renderSkeleton } = props;
+  const { fieldType, iconSrc, iconAlt, placeholder, showTimeSelect, dateFormat, renderSkeleton, value } = props;
 
   switch (fieldType) {
     case FormFieldType.INPUT:
@@ -62,6 +63,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
               placeholder={placeholder}
               {...field}
               className="shad-input border-0"
+              value={value}
             />
           </FormControl>
         </div>
@@ -75,7 +77,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
               placeholder={placeholder}
               international
               withCountryCallingCode
-              value={field.value}
+              value={value ?? field.value}
               onChange={field.onChange}
               className="input-phone"
             />

@@ -9,9 +9,9 @@ import CustomFormField from "../CustomFormField"
 import SubmitButton from "../SubmitButton"
 
 import { useState } from "react";
-import { PatientFormValidation, UserFormValidation } from "@/lib/validation"
+import { PatientFormValidation } from "@/lib/validation"
 import { useRouter } from "next/navigation"
-import { createUser, registerPatient } from "@/lib/actions/patient.actions"
+import { registerPatient } from "@/lib/actions/patient.actions"
 import FormFieldType from "@/types/formFieldTypes"
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group"
 import { Doctors, GenderOptions, IdentificationTypes, PatientFormDefaultValues } from "@/constants"
@@ -27,7 +27,10 @@ const RegisterForm = ({ user }: {user: User}) => {
   const form = useForm<z.infer<typeof PatientFormValidation>>({
     resolver: zodResolver(PatientFormValidation),
     defaultValues: {
-      ...PatientFormDefaultValues
+      ...PatientFormDefaultValues,
+      name: user.name,
+      email: user.email,
+      phone: user.phone,
     },
   })
 
@@ -89,7 +92,8 @@ const RegisterForm = ({ user }: {user: User}) => {
               fieldType={FormFieldType.INPUT}
               control={form.control}
               name="name"
-              label="Full name"
+              label="Full name *"
+              value={user.name}
               placeholder="John Doe"
               iconSrc="/assets/icons/user.svg"
               iconAlt="user"
@@ -100,7 +104,8 @@ const RegisterForm = ({ user }: {user: User}) => {
               fieldType={FormFieldType.INPUT}
               control={form.control}
               name="email"
-              label="Email"
+              label="Email *"
+              value={user.email}
               placeholder="johndoe@example.com"
               iconSrc="/assets/icons/email.svg"
               iconAlt="email"
@@ -111,7 +116,8 @@ const RegisterForm = ({ user }: {user: User}) => {
               fieldType={FormFieldType.PHONE}
               control={form.control}
               name="phone"
-              label="Phone number"
+              label="Phone number *"
+              value={user.phone}
               placeholder="(555) 123-4567"
           />
         </div>
@@ -121,7 +127,7 @@ const RegisterForm = ({ user }: {user: User}) => {
               fieldType={FormFieldType.DATE_PICKER}
               control={form.control}
               name="birthDate"
-              label="Date of birth"
+              label="Date of birth *"
               placeholder="d/mm/yy"
           />
 
@@ -129,7 +135,7 @@ const RegisterForm = ({ user }: {user: User}) => {
               fieldType={FormFieldType.SKELETON}
               control={form.control}
               name="gender"
-              label="Gender"
+              label="Gender *"
               renderSkeleton={(field) => (
                 <FormControl>
                   <RadioGroup
@@ -163,7 +169,7 @@ const RegisterForm = ({ user }: {user: User}) => {
               fieldType={FormFieldType.INPUT}
               control={form.control}
               name="address"
-              label="Address"
+              label="Address *"
               placeholder="14th street, New York"
           />
 
@@ -171,7 +177,7 @@ const RegisterForm = ({ user }: {user: User}) => {
               fieldType={FormFieldType.INPUT}
               control={form.control}
               name="occupation"
-              label="Occupation"
+              label="Occupation *"
               placeholder="Receptionist"
         />
 
@@ -182,7 +188,7 @@ const RegisterForm = ({ user }: {user: User}) => {
               fieldType={FormFieldType.INPUT}
               control={form.control}
               name="emergencyContactName"
-              label="Emergency Contact Name"
+              label="Emergency Contact Name *"
               placeholder="Contact name"
           />
 
@@ -190,7 +196,7 @@ const RegisterForm = ({ user }: {user: User}) => {
               fieldType={FormFieldType.PHONE}
               control={form.control}
               name="emergencyContactNumber"
-              label="Emergency Contact Number"
+              label="Emergency Contact Number *"
               placeholder="(555) 123-4567"
           />
         </div>
@@ -207,7 +213,7 @@ const RegisterForm = ({ user }: {user: User}) => {
             fieldType={FormFieldType.SELECT}
             control={form.control}
             name="primaryPhysician"
-            label="Primary care physician"
+            label="Primary care physician *"
             placeholder="Select a physician"
           >
             {Doctors.map((doctor, i) => (
@@ -231,7 +237,7 @@ const RegisterForm = ({ user }: {user: User}) => {
               fieldType={FormFieldType.INPUT}
               control={form.control}
               name="insuranceProvider"
-              label="Insurance Provider"
+              label="Insurance Provider *"
               placeholder="Blue Cross Blue Shield"
           />
 
@@ -239,7 +245,7 @@ const RegisterForm = ({ user }: {user: User}) => {
               fieldType={FormFieldType.INPUT}
               control={form.control}
               name="insurancePolicyNumber"
-              label="Insurance Policy Number"
+              label="Insurance Policy Number *"
               placeholder="12345"
           />
         </div>
@@ -292,7 +298,7 @@ const RegisterForm = ({ user }: {user: User}) => {
             fieldType={FormFieldType.SELECT}
             control={form.control}
             name="identificationType"
-            label="Identification Type"
+            label="Identification Type *"
             placeholder="Select Identification Type"
           >
             {IdentificationTypes.map((type, i) => (
@@ -314,7 +320,7 @@ const RegisterForm = ({ user }: {user: User}) => {
               fieldType={FormFieldType.SKELETON}
               control={form.control}
               name="identificationDocument"
-              label="Scanned copy of identification document"
+              label="Scanned copy of identification document *"
               renderSkeleton={(field) => (
                 <FormControl>
                   <FileUploader files={field.value} onChange={field.onChange}/>
@@ -335,21 +341,21 @@ const RegisterForm = ({ user }: {user: User}) => {
               fieldType={FormFieldType.CHECKBOX}
               control={form.control}
               name="treatmentConsent"
-              label="I consent to treatment"
+              label="I consent to treatment *"
           />
 
           <CustomFormField 
               fieldType={FormFieldType.CHECKBOX}
               control={form.control}
               name="disclosureConsent"
-              label="I consent to the discolsure of my information"
+              label="I consent to the discolsure of my information *"
           />
 
           <CustomFormField 
               fieldType={FormFieldType.CHECKBOX}
               control={form.control}
               name="privacyConsent"
-              label="I acknowledge and agree to the privacy policy"
+              label="I acknowledge and agree to the privacy policy *"
           />
         </div>
 
