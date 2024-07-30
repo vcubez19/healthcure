@@ -21,7 +21,7 @@ const AppointmentSuccess = async ({ params: { userId }, searchParams }: SearchPa
     <div className="flex h-screen max-h-screen px-[5%]">
         <div className="success-img">
             <Link href="/">
-                <div className="w-1/3 mb-10">
+                <div className="w-1/2 mb-10">
                 <Image
                     src="/assets/icons/logo-full.svg"
                     height={1000}
