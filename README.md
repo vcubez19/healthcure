@@ -131,8 +131,27 @@ To set up the project locally, follow these steps:
 
 ## Screenshots
 
-put em here
+![HealthCure landing page](https://github.com/vcubez19/healthcure/blob/main/landing-page.png?raw=true)
 
+![HealthCure admin page sms modal](https://github.com/vcubez19/healthcure/blob/main/sms-modal.png?raw=true)
+
+![HealthCure admin dashboard](https://github.com/vcubez19/healthcure/blob/main/admin-dashboard.png?raw=true) 
+
+![HealthCure admin page schedule appointment](https://github.com/vcubez19/healthcure/blob/main/schedule-appointment.png?raw=true) 
+
+![HealthCure admin page schedule appointment](https://github.com/vcubez19/healthcure/blob/main/cancel-appointment.png?raw=true) 
+
+![HealthCure new patient form photo 1](https://github.com/vcubez19/healthcure/blob/main/patient-1.png?raw=true) 
+
+![HealthCure new patient form photo 2](https://github.com/vcubez19/healthcure/blob/main/patient-2.png?raw=true) 
+
+![HealthCure new patient form photo 3](https://github.com/vcubez19/healthcure/blob/main/patient-3.png?raw=true) 
+
+![HealthCure new patient form photo 4](https://github.com/vcubez19/healthcure/blob/main/patient-4.png?raw=true) 
+
+![HealthCure new appointment form ](https://github.com/vcubez19/healthcure/blob/main/new-appointment.png?raw=true) 
+
+![HealthCure appointment success page ](https://github.com/vcubez19/healthcure/blob/main/appointment-success.png?raw=true) 
 
 ## License
 This project is not licensed. Feel free to use and modify it as you see fit.
