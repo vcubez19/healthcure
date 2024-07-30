@@ -20,7 +20,7 @@ export default function Home({ searchParams }: SearchParamProps) {
               src="/assets/icons/logo-full.svg"
               height={1000}
               width={1000}
-              alt="patient"
+              alt="HealthCure logo"
               layout="responsive"
             />
           </div>
