@@ -13,6 +13,7 @@ import { UserFormValidation } from "@/lib/validation"
 import { useRouter } from "next/navigation"
 import { createUser } from "@/lib/actions/patient.actions"
 import FormFieldType from "@/types/formFieldTypes"
+import Link  from "next/link"
 
 const PatientForm = () => {
 
@@ -59,6 +60,14 @@ const PatientForm = () => {
             <h1 className="text-2xl">Hello</h1>
             <p>Let's get you started</p>
         </section>
+
+        <div>
+            <Link href="https://github.com/vcubez19/healthcure#screenshots">
+              <button className="bg-purple-500 w-full p-4 rounded font-bold">
+                Recruiters click here to see screenshots and avoid forms
+              </button>
+            </Link>
+        </div>
 
         <CustomFormField 
             fieldType={FormFieldType.INPUT}
