@@ -95,7 +95,9 @@ export const updateAppointment = async ({ appointmentId, userId, appointment, ty
             }
         `
 
-        await sendSMSNotification(userId, smsMessage);
+        //// Disabled 09/05/2024 to avoid being billed by Twilio.
+
+        // await sendSMSNotification(userId, smsMessage);
 
         revalidatePath("/admin");
 
